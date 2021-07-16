@@ -1,0 +1,13 @@
+.control-container {
+  width: 100%;
+  padding: 5%;
+}
+.control-container > * {
+  width: 100%;
+}
+.mat-radio-button {
+  margin-right: 15px;
+}
+.btn-row button {
+  margin-right: 10px;
+}
