@@ -4,7 +4,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 @Injectable({
   providedIn: 'root'
 })
-export class DeparmentService {
+export class DepartmentService {
   departmentList: AngularFireList<any>;
   array:any = [];
 
@@ -13,9 +13,18 @@ export class DeparmentService {
     this.departmentList.snapshotChanges().subscribe(list => {
       this.array = list.map(item => {
         return {
+          $key: item.key,
           ...item.payload.val()
         }
       })
     })
+  }
+
+  getDepartmentName($key:string) {
+    if ($key == "0") {
+      return "";
+    } else {
+      return this.array.find((dep:any) => dep.$key == $key)['value'];
+    }
   }
 }
