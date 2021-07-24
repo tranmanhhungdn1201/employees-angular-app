@@ -1,0 +1,24 @@
+
+<div class="container">
+  <mat-card class="card-login">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="authService.form" (ngSubmit)="onLogin()">
+        <mat-form-field>
+          <input matInput formControlName="email" placeholder="Email">
+          <mat-error *ngIf="authService.form.controls['email'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="authService.form.controls['email'].errors?.email">Invalid email address.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" formControlName="password" placeholder="Password">
+          <mat-error>This field is mandatory</mat-error>
+        </mat-form-field>
+        <div class="form-button">
+          <button mat-raised-button color="primary" [disabled]="authService.form.invalid">Login</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

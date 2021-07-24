@@ -9,6 +9,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EmployeeComponent } from 'src/app/components/employees/employee/employee.component';
 import { NotificationService } from 'src/app/services/notification.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
@@ -46,6 +47,11 @@ export class EmployeeListComponent implements OnInit {
       this.listData.paginator = this.paginator;
       this.lengthData = this.listData.data.length;
     });
+    let emps = this.employeeService.getEmployees();
+    let deps = this.employeeService.getEmployees();
+    forkJoin([emps, deps]).subscribe(response => {
+      console.log(response);
+    })
   }
 
   onSearchClear() {
